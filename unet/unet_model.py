@@ -420,7 +420,7 @@ class UNet(nn.Module):
     def __init__(self, in_channels, out_channels, conv_depths=(64, 128, 256, 512, 1024)):
         assert len(conv_depths) > 2, 'conv_depths must have at least 3 members'
 
-        super(UNet2D, self).__init__()
+        super(UNet, self).__init__()
 
         # defining encoder layers
         encoder_layers = []
