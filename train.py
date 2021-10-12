@@ -113,7 +113,7 @@ if torch.cuda.device_count() > 1:
   model = nn.DataParallel(model,device_ids=[0,1]).cuda()
 model.to(device)
 
-criterion = f1_score#LogNLLLoss()
+criterion = LogNLLLoss()
 optimizer = torch.optim.Adam(list(model.parameters()), lr=args.learning_rate,
                              weight_decay=1e-5)
 
