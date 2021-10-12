@@ -94,7 +94,8 @@ valloader = DataLoader(val_dataset, 1, shuffle=True)
 
 device = torch.device("cuda")
 if modelname == "unet":
-    model = UNet(n_channels=3, n_classes=2, bilinear=True)
+    # model = UNet(n_channels=3, n_classes=2, bilinear=True)
+    model = UNet(in_channel=3,out_channel=2)
 
 if modelname == "axialunet":
     model = lib.models.axialunet(img_size = imgsize, imgchan = imgchant)
