@@ -133,8 +133,6 @@ for epoch in range(args.epochs):
     
     for batch_idx, (X_batch, y_batch, *rest) in enumerate(dataloader):        
         
-        
-
         X_batch = Variable(X_batch.to(device ='cuda'))
         y_batch = Variable(y_batch.to(device='cuda'))
         
