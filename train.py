@@ -86,7 +86,7 @@ else:
 
 tf_train = JointTransform2D(crop=crop, p_flip=0.5, color_jitter_params=None, long_mask=True)
 tf_val = JointTransform2D(crop=crop, p_flip=0, color_jitter_params=None, long_mask=True)
-train_dataset = ImageToImage2D(args.train_dataset, tf_train)
+train_dataset = ImageToImage2D(args.train_dataset, tf_val)
 val_dataset = ImageToImage2D(args.val_dataset, tf_val)
 predict_dataset = Image2D(args.val_dataset)
 dataloader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
@@ -211,7 +211,6 @@ for epoch in range(args.epochs):
             fulldir = direc+"/{}/".format(epoch)
             # print(fulldir+image_filename)
             if not os.path.isdir(fulldir):
-                
                 os.makedirs(fulldir)
             
             cv2.imwrite(fulldir+image_filename, yHaT[0,1,:,:])
