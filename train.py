@@ -27,6 +27,8 @@ from functools import partial
 from random import randint
 import timeit
 
+from unet import UNet
+
 parser = argparse.ArgumentParser(description='MedT')
 parser.add_argument('-j', '--workers', default=16, type=int, metavar='N',
                     help='number of data loading workers (default: 8)')
@@ -91,6 +93,8 @@ dataloader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
 valloader = DataLoader(val_dataset, 1, shuffle=True)
 
 device = torch.device("cuda")
+if modelname == "unet":
+    model = UNet(n_channels=3, n_classes=2, bilinear=True)
 
 if modelname == "axialunet":
     model = lib.models.axialunet(img_size = imgsize, imgchan = imgchant)
