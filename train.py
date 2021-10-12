@@ -91,12 +91,12 @@ val_dataset = ImageToImage2D(args.val_dataset, tf_val)
 predict_dataset = Image2D(args.val_dataset)
 dataloader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
 valloader = DataLoader(val_dataset, 1, shuffle=True)
-
+from unet1.unet import UNet2D
 device = torch.device("cuda")
 if modelname == "unet":
     # model = UNet(n_channels=3, n_classes=2, bilinear=True)
     # model = UNet(in_channel=3,out_channel=2)
-    model = UNet(3, 2)
+    model = UNet2D(3, 2)
 
 if modelname == "axialunet":
     model = lib.models.axialunet(img_size = imgsize, imgchan = imgchant)
