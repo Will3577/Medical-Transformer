@@ -150,7 +150,7 @@ class ImageToImage2D(Dataset):
         # print(image.shape)
         # read mask image
         mask = cv2.imread(os.path.join(self.output_path, image_filename.split('.')[0]+'_bin_mask.png'),0)
-        print(image_filename)
+        print(image_filename=='./DS_Store')
         mask[mask<=127] = 0
         mask[mask>127] = 1
         # correct dimensions if needed
