@@ -38,13 +38,13 @@ from .unet_parts import *
 
 
 import torch
-import torchvision
+# import torchvision
 import torch.nn as nn
 import torch.nn.functional as F
-import torch.optim as optim
-from torch.autograd import Variable
-from tqdm import trange
-from time import sleep
+# import torch.optim as optim
+# from torch.autograd import Variable
+# from tqdm import trange
+# from time import sleep
 use_gpu = torch.cuda.is_available()
 
 
