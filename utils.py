@@ -107,7 +107,6 @@ class ImageToImage2D(Dataset):
            filename.
         2. With unet.model.Model wrapper, an instance of this object should be passed as train or validation
            datasets.
-
     Args:
         dataset_path: path to the dataset. Structure of the dataset should be:
             dataset_path
@@ -119,7 +118,6 @@ class ImageToImage2D(Dataset):
                   |-- img001.png
                   |-- img002.png
                   |-- ...
-
         joint_transform: augmentation transform, an instance of JointTransform2D. If bool(joint_transform)
             evaluates to False, torchvision.transforms.ToTensor will be used on both image and mask.
         one_hot_mask: bool, if True, returns the mask in one-hot encoded form.
@@ -127,8 +125,8 @@ class ImageToImage2D(Dataset):
 
     def __init__(self, dataset_path: str, joint_transform: Callable = None, one_hot_mask: int = False) -> None:
         self.dataset_path = dataset_path
-        self.input_path = os.path.join(dataset_path, 'img')
-        self.output_path = os.path.join(dataset_path, 'labelcol')
+        self.input_path = os.path.join(dataset_path, 'images')
+        self.output_path = os.path.join(dataset_path, 'masks')
         self.images_list = os.listdir(self.input_path)
         self.one_hot_mask = one_hot_mask
 
@@ -151,7 +149,7 @@ class ImageToImage2D(Dataset):
         image = cv2.imread(os.path.join(self.input_path, image_filename))
         # print(image.shape)
         # read mask image
-        mask = cv2.imread(os.path.join(self.output_path, image_filename[: -3] + "png"),0)
+        mask = cv2.imread(os.path.join(self.output_path, image_filename.split('.')[0]+'_bin_mask.png'),0)
         
         mask[mask<=127] = 0
         mask[mask>127] = 1
